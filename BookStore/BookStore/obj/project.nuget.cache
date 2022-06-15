@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "D00fZvLYU6mZlU/8T6seED+c9IgQbU6OpZH7X17hUSZIN+CJCiFB7aCEWqcDe7Nj+Qfehbl3/Sl0wb75z2Q0yQ==",
+  "dgSpecHash": "b2p9smmBwnvzDsnMMEPoemuQu/i6d7HdT0lxTlCQZzCI841Qs4voyPVBKNspbvH5PB3EbRrggH8Ws/qTquoZVg==",
   "success": true,
   "projectFilePath": "C:\\Users\\91992\\Desktop\\BookStore\\BookStore\\BookStore\\BookStore.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\91992\\.nuget\\packages\\experimental.system.messaging\\1.1.0\\experimental.system.messaging.1.1.0.nupkg.sha512",
     "C:\\Users\\91992\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.5\\microsoft.aspnetcore.authentication.jwtbearer.3.1.5.nupkg.sha512",
     "C:\\Users\\91992\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\91992\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\6.0.0\\microsoft.extensions.configuration.abstractions.6.0.0.nupkg.sha512",

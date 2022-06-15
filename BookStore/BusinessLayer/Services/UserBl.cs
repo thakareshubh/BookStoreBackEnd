@@ -32,11 +32,35 @@ namespace BusinessLayer.Services
         }
 
         //login
-        public LoginUserModel UserLogin(LoginUserModel userLogin)
+        public LoginUserModel UserLogin(string Email, string Password)
         {
             try
             {
-                return this.iuserRl.UserLogin(userLogin);
+                return this.iuserRl.UserLogin(Email, Password);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public string UserForgotPassword(string Email)
+        {
+            try
+            {
+                return this.iuserRl.UserForgotPassword(Email);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public string UserResetPassword(resetPasswordModel resetPassword, string email)
+        {
+            try
+            {
+                return this.iuserRl.UserResetPassword(resetPassword, email);
             }
             catch (Exception)
             {
