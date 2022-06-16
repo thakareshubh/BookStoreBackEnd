@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Interface;
 using CommonLayer.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Security.Claims;
@@ -10,7 +11,7 @@ namespace BookStore.Controllers
     [ApiController]
     public class UserRegistration : ControllerBase
     {
-       private readonly IuserBl iuserBl;
+        private readonly IuserBl iuserBl;
 
         public UserRegistration(IuserBl iuserBl)
         {
@@ -22,13 +23,13 @@ namespace BookStore.Controllers
         {
             try
             {
-                var result = this.iuserBl.UserRegistration( userReg);
+                var result = this.iuserBl.UserRegistration(userReg);
                 if (result != null)
                 {
-                    return this.Ok(new ResponseModel<UserRegModel>() { status = true, message = $"Register Successful",Data=result });
+                    return this.Ok(new ResponseModel<UserRegModel>() { status = true, message = $"Register Successful", Data = result });
 
                 }
-                return this.BadRequest(new ResponseModel<UserRegModel>() { status = true, message = $"Register Failed",Data=result});
+                return this.BadRequest(new ResponseModel<UserRegModel>() { status = true, message = $"Register Failed", Data = result });
 
             }
             catch (Exception ex)
@@ -47,10 +48,10 @@ namespace BookStore.Controllers
                 var result = this.iuserBl.UserLogin(Email, Password);
                 if (result != null)
                 {
-                    return this.Ok(new ResponseModel<LoginUserModel>() { status = true, message = $"Login Successful",Data=result });
+                    return this.Ok(new ResponseModel<LoginUserModel>() { status = true, message = $"Login Successful", Data = result });
 
                 }
-                return this.BadRequest(new ResponseModel<LoginUserModel>() { status = true, message = "Login Failed",Data=result });
+                return this.BadRequest(new ResponseModel<LoginUserModel>() { status = true, message = "Login Failed", Data = result });
 
             }
             catch (Exception ex)
@@ -81,7 +82,9 @@ namespace BookStore.Controllers
             }
         }
 
-        
+
+        [Authorize]
+
         [HttpPut("ResetPassword")]
 
         public ActionResult UserResetPassword(resetPasswordModel resetPassword)
@@ -91,7 +94,7 @@ namespace BookStore.Controllers
 
                 string email = User.FindFirst(ClaimTypes.Email).Value.ToString();
                 string result = iuserBl.UserResetPassword(resetPassword, email);
-                if (result==null)
+                if (result == null)
                 {
                     return this.BadRequest(new ResponseModel<string>() { status = false, message = $"Reset Password Failed", Data = result });
 

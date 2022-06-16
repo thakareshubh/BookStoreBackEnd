@@ -267,7 +267,7 @@ namespace RepositoryLayer.Services
             SqlConnection = new SqlConnection(this.configuration["ConnectionString:BookStoreConnection"]);
             try
             {
-                
+
                 SqlCommand com = new SqlCommand("spUserForgotPassword", this.SqlConnection)
                 {
                     CommandType = CommandType.StoredProcedure
@@ -324,7 +324,7 @@ namespace RepositoryLayer.Services
                     SqlCommand cmd = new SqlCommand("spUserResetPassword", SqlConnection);
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    var encryptPassword = EncryptPassword(resetPassword.NewPassword);
+                    //var encryptPassword = EncryptPassword(resetPassword.NewPassword);
 
                     cmd.Parameters.AddWithValue("@Email", email);
                     cmd.Parameters.AddWithValue("@Password", EncryptPassword(resetPassword.NewPassword));
@@ -346,7 +346,7 @@ namespace RepositoryLayer.Services
                     return "Make sure password are matched";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
