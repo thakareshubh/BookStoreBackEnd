@@ -46,15 +46,15 @@ end;
 
 ----store procedure for update book---
 
-create procedure Updatebook
+alter procedure Updatebook
 (
 @BookId int,
 @BookName varchar(max),
 @AuthorName varchar(250),
-@Rating int,
+@Rating varchar(50),
 @RatingCount int,
-@DiscountPrice int,
-@ActualPrice int,
+@DiscountPrice varchar(50),
+@ActualPrice varchar(50),
 @Description varchar(max),
 @BookImage varchar(250),
 @BookQuantity int
@@ -103,3 +103,15 @@ begin
 select * from Book
 end;
 
+----delete cart--
+
+create proc DeleteCart
+(
+	@CartId int,
+	@UserId int
+)
+as
+begin
+delete Cart where
+		CartId=@CartId and UserId=@UserId;
+end;

@@ -58,3 +58,20 @@ Begin
 		on c.BookId = b.BookId
 		where UserId = @UserId;
 end
+
+----update quantity---
+
+create proc UpdateCart
+(
+	@BookQuantity int,
+	@BookId int,
+	@UserId int,
+	@CartId int
+)
+as
+begin
+update Carts set BookId=@BookId,
+				UserId=@UserId,
+				Book_Quantity=@BookQuantity
+				where CartId=@CartId;
+end;

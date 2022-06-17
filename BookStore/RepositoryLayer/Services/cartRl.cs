@@ -1,4 +1,5 @@
 ﻿using CommonLayer.cartModel;
+using CommonLayer.Model;
 using Microsoft.Extensions.Configuration;
 using RepositoryLayer.Interface;
 using System;
@@ -97,7 +98,7 @@ namespace RepositoryLayer.Services
         }
         public List<CartResponseModel> GetAllCart(int userId)
         {
-            List<CartResponseModel> cart = new List<CartResponseModel>();
+            
             SqlConnection = new SqlConnection(this.configuration["ConnectionString:BookStoreConnection"]);
 
             try
@@ -114,21 +115,24 @@ namespace RepositoryLayer.Services
 
                     if (reader.HasRows)
                     {
+                        List<CartResponseModel> cart = new List<CartResponseModel>();
+                        CartResponseModel model = new CartResponseModel();
 
                         while (reader.Read())
                         {
-                            cart.Add(new CartResponseModel
-                            {
-                                BookId = Convert.ToInt32(reader["BookId"]),
-                                BookName = reader["BookName"].ToString(),
-                                AuthorName = reader["AuthorName"].ToString(),
-                                CartId = Convert.ToInt32(reader["CartId"]),
-                                DiscountPrice = reader["DiscountPrice"].ToString(),
-                                ActualPrice = reader["ActualPrice"].ToString(),
-                                BookImage = reader["BookImage"].ToString(),
-                                BookQuantity = Convert.ToInt32(reader["BookQuantity"]),
-                            });
-
+                            UpdateBookModel bookModel = new UpdateBookModel();
+                            bookModel. BookId = Convert.ToInt32(reader["BookId"]);
+                            bookModel.BookName = reader["BookName"].ToString();
+                            bookModel.AuthorName = reader["AuthorName"].ToString();
+                            bookModel.DiscountPrice = reader["DiscountPrice"].ToString();
+                            bookModel.ActualPrice = reader["ActualPrice"].ToString();
+                            bookModel.BookImage = reader["BookImage"].ToString();
+                            model.CartId = Convert.ToInt32(reader["BookId"]);
+                            model.UserId = Convert.ToInt32(reader["BookId"]);
+                            model.BookId = Convert.ToInt32(reader["BookId"]);
+                            model.BookQuantity = Convert.ToInt32(reader["BookQuantity"]);
+                            model.UpdateBookModel = bookModel;
+                            cart.Add(model);
                         }
                         SqlConnection.Close();
                         return cart;
