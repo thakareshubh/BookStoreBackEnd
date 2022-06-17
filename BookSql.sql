@@ -2,11 +2,11 @@ use Bookstore
 
 ----creating book table--
 
-create table Book(
+alter table Book(
 BookId int identity(1,1) not null primary key,
 BookName varchar(270) not null,
 AuthorName varchar(180) not null,
-Rating int ,
+Rating  int,
 RatingCount int ,
 DiscountPrice int,
 ActualPrice int not null,
@@ -14,6 +14,9 @@ Description varchar(max) not null,
 BookImage varchar(250),
 BookQuantity int not null
 );
+
+Alter table Book
+alter column ActualPrice varchar(20)
 
 select *from Book
 
@@ -24,10 +27,10 @@ select *from Book
 	
 	@BookName varchar(max),
 	@AuthorName varchar(80),
-	@Rating int,
+	@Rating varchar(20),
 	@RatingCount int,
-	@DiscountPrice int,
-	@ActualPrice int,
+	@DiscountPrice varchar(50),
+	@ActualPrice varchar(50),
 	@Description varchar(max),
 	@BookImage varchar(250),
 	@BookQuantity int
@@ -99,3 +102,4 @@ as
 begin
 select * from Book
 end;
+

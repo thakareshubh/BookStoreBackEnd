@@ -30,13 +30,13 @@ namespace RepositoryLayer.Services
 
         public UserRegModel UserRegistration(UserRegModel userReg)
         {
-            SqlConnection = new SqlConnection(this.configuration["ConnectionString:BookStoreConnection"]);
+            SqlConnection = new SqlConnection(this.configuration["ConnectionString:BookStoreConnection"]);//DataBase connection
 
             try
             {
                 using (SqlConnection)
                 {
-                    SqlCommand cmd = new SqlCommand("SP_User_Registration", SqlConnection);
+                    SqlCommand cmd = new SqlCommand("SP_User_Registration", SqlConnection);// connection with store procedure
                     cmd.CommandType = CommandType.StoredProcedure;
                     var encryptedPassword = EncryptPassword(userReg.Password);
 
@@ -132,9 +132,10 @@ namespace RepositoryLayer.Services
                         { cmd.CommandType = CommandType.StoredProcedure; }
 
                         LoginUserModel model = new LoginUserModel();
+                        var encryptedPassword = EncryptPassword(Password);
 
                         cmd.Parameters.AddWithValue("@Email", Email);
-                        cmd.Parameters.AddWithValue("@Password", Password);
+                        cmd.Parameters.AddWithValue("@Password", encryptedPassword);
 
                         SqlConnection.Open();
 
@@ -154,7 +155,7 @@ namespace RepositoryLayer.Services
 
 
                                 model.Email = Convert.ToString(sdr["Email"]);
-                                model.Password = Convert.ToString(sdr["Password"]);
+                                encryptedPassword = Convert.ToString(sdr["Password"]);
                                 UserId = Convert.ToInt32(sdr["UserId"]);
 
 

@@ -173,10 +173,10 @@ namespace RepositoryLayer.Services
                             BookId = Convert.ToInt32(reader["BookId"]);
                             model.BookName=reader["BookName"].ToString();
                             model.AuthorName = reader["AuthorName"].ToString();
-                            model.Rating = Convert.ToInt32(reader["Rating"]);
+                            model.Rating = reader["Rating"].ToString();
                             model.RatingCount = Convert.ToInt32(reader["RatingCount"]);
-                            model.DiscountPrice = Convert.ToInt32(reader["DiscountPrice"]);
-                            model.ActualPrice = Convert.ToInt32(reader["ActualPrice"]);
+                            model.DiscountPrice = reader["DiscountPrice"].ToString();
+                            model.ActualPrice = reader["ActualPrice"].ToString();
                             model.BookImage = reader["BookImage"].ToString();
                             model.BookQuantity = Convert.ToInt32(reader["BookQuantity"]);
 
@@ -228,10 +228,10 @@ namespace RepositoryLayer.Services
                                 BookId = Convert.ToInt32(reader["BookId"]),
                                 BookName = reader["BookName"].ToString(),
                                 AuthorName = reader["AuthorName"].ToString(),
-                                Rating = Convert.ToInt32(reader["Rating"]),
+                                Rating = reader["Rating"].ToString(),
                                 RatingCount = Convert.ToInt32(reader["RatingCount"]),
-                                DiscountPrice = Convert.ToInt32(reader["DiscountPrice"]),
-                                ActualPrice = Convert.ToInt32(reader["ActualPrice"]),
+                                DiscountPrice = reader["DiscountPrice"].ToString(),
+                                ActualPrice = reader["ActualPrice"].ToString(),
                                 BookImage = reader["BookImage"].ToString(),
                                 BookQuantity = Convert.ToInt32(reader["BookQuantity"]),
                             });
