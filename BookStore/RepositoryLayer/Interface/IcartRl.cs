@@ -10,6 +10,7 @@ namespace RepositoryLayer.Interface
         cartModel AddtoCart(cartModel cart, int userId);
 
         public string removeCart(int cartId);
+        public cartModel updateCart(int cartId, cartModel cartModel, int userId);
 
         List<CartResponseModel> GetAllCart(int userId);
     }

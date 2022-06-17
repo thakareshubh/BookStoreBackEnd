@@ -152,5 +152,42 @@ namespace RepositoryLayer.Services
             }
 
         }
+
+        public cartModel updateCart(int cartId, cartModel cartModel, int userId)
+        {
+            SqlConnection = new SqlConnection(this.configuration["ConnectionString:BookStoreConnection"]);
+
+            try
+            {
+                using (SqlConnection)
+                {
+                    SqlCommand cmd = new SqlCommand("UpdateCart", SqlConnection);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@CartId ", cartId);
+                    cmd.Parameters.AddWithValue("@BookQuantity ", cartModel.BookQuantity);
+                    cmd.Parameters.AddWithValue("@BookId ", cartModel.BookId);
+                    cmd.Parameters.AddWithValue("@UserId ", userId);
+
+
+                    SqlConnection.Open();
+
+                    int result = cmd.ExecuteNonQuery();
+                    SqlConnection.Close();
+                    if (result != 0)
+                    {
+                        return cartModel;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

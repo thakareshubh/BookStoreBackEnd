@@ -53,5 +53,17 @@ namespace BusinessLayer.Services
             }
 
         }
+
+        public cartModel updateCart(int cartId, cartModel cartModel, int userId)
+        {
+            try
+            {
+                return this.icartRl.updateCart(cartId, cartModel,userId);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

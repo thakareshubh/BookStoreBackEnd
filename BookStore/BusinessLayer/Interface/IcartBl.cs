@@ -10,5 +10,6 @@ namespace BusinessLayer.Interface
         cartModel AddtoCart(cartModel cart, int userId);
         public string removeCart(int cartId);
         List<CartResponseModel> GetAllCart(int userId);
+        public cartModel updateCart(int cartId, cartModel cartModel, int userId);
     }
 }

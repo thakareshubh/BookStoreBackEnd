@@ -79,6 +79,27 @@ namespace BookStore.Controllers
                 throw;
             }
         }
+        [HttpPut("updateCart/{cartId}/{userId}")]
+        public ActionResult updateCart(int cartId, cartModel cartModel, int userId)
+        {
+            try
+            {
+                var result = this.icartBl.updateCart(cartId, cartModel, userId);
+                if (result != null)
+                {
+                    return this.Ok(new { Success = true, message = "update cart successfull", Response = result });
+
+                }
+                return this.BadRequest(new { Success = true, message = "update cart failed", Response = result });
+
+            }
+            catch
+            {
+
+                throw;
+            }
+        }
+
 
 
     }
