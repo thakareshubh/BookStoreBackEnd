@@ -127,8 +127,8 @@ namespace RepositoryLayer.Services
                             bookModel.DiscountPrice = reader["DiscountPrice"].ToString();
                             bookModel.ActualPrice = reader["ActualPrice"].ToString();
                             bookModel.BookImage = reader["BookImage"].ToString();
-                            model.CartId = Convert.ToInt32(reader["BookId"]);
-                            model.UserId = Convert.ToInt32(reader["BookId"]);
+                            model.CartId = Convert.ToInt32(reader["CartId"]);
+                            model.UserId = Convert.ToInt32(reader["UserId"]);
                             model.BookId = Convert.ToInt32(reader["BookId"]);
                             model.BookQuantity = Convert.ToInt32(reader["BookQuantity"]);
                             model.UpdateBookModel = bookModel;

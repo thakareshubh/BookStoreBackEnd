@@ -61,7 +61,7 @@ end
 
 ----update quantity---
 
-create proc UpdateCart
+alter proc UpdateCart
 (
 	@BookQuantity int,
 	@BookId int,
@@ -70,7 +70,7 @@ create proc UpdateCart
 )
 as
 begin
-update Carts set BookId=@BookId,
+update Cart set BookId=@BookId,
 				UserId=@UserId,
 				Book_Quantity=@BookQuantity
 				where CartId=@CartId;

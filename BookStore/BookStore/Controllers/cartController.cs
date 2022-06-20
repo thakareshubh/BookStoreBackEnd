@@ -1,7 +1,10 @@
 ﻿using BusinessLayer.Interface;
 using CommonLayer.cartModel;
 using CommonLayer.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace BookStore.Controllers
 {
@@ -16,12 +19,13 @@ namespace BookStore.Controllers
             this.icartBl = icartBl;
         }
 
-
+        [Authorize(Roles = Role.User)]
         [HttpPost("AddCart")]
-        public ActionResult AddtoCart(cartModel cart, int userId)
+        public ActionResult AddtoCart(cartModel cart)
         {
             try
             {
+                int userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = this.icartBl.AddtoCart(cart, userId);
                 if (result != null)
                 {
@@ -38,7 +42,8 @@ namespace BookStore.Controllers
             }
         }
 
-        [HttpDelete("DeleteBook")]
+        [Authorize(Roles = Role.User)]
+        [HttpDelete("DeleteBook/{cartId}")]
         public ActionResult removeCart(int cartId)
         {
             try
@@ -59,11 +64,13 @@ namespace BookStore.Controllers
             }
         }
 
+        [Authorize(Roles = Role.User)]
         [HttpGet("GetAllCartBook")]
-        public ActionResult GetAllCart(int userId)
+        public ActionResult GetAllCart()
         {
             try
             {
+                int userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = this.icartBl.GetAllCart(userId);
                 if (result != null)
                 {
@@ -79,11 +86,14 @@ namespace BookStore.Controllers
                 throw;
             }
         }
-        [HttpPut("updateCart/{cartId}/{userId}")]
-        public ActionResult updateCart(int cartId, cartModel cartModel, int userId)
+
+        [Authorize(Roles = Role.User)]
+        [HttpPut("updateCart/{cartId}")]
+        public ActionResult updateCart(int cartId, cartModel cartModel)
         {
             try
             {
+                int userId = Convert.ToInt32(User.Claims.FirstOrDefault(e => e.Type == "UserId").Value);
                 var result = this.icartBl.updateCart(cartId, cartModel, userId);
                 if (result != null)
                 {

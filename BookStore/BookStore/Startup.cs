@@ -1,3 +1,4 @@
+using BusinessLayer;
 using BusinessLayer.Interface;
 using BusinessLayer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -50,6 +51,19 @@ namespace BookStore
 
             services.AddTransient<IcartRl, cartRl>();
             services.AddTransient<IcartBl, cartBl>();
+
+            services.AddTransient<IwishListRl, WishListRl>();
+            services.AddTransient<IwishListBl, WishListBl>();
+
+            services.AddTransient<IfeadBackRl, FeadBackRl>();
+            services.AddTransient<IfeadbackBl, FeadBackBl>();
+
+            services.AddTransient<IAddressRL, AddressRL>();
+            services.AddTransient<IAddressBL, AddressBL>();
+
+            services.AddTransient<IOrderRL, OrderRL>();
+            services.AddTransient<IOrderBL,OrderBL>();
+
 
             services.AddSwaggerGen(setup =>
             {

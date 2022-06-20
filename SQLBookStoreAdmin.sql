@@ -11,6 +11,8 @@ Password varchar(255),
 PhoneNumber Bigint
 );
 
+Alter table Book Add Admin int Foreign key(Admin) References AdminTable(Admin);
+
 ----insert admin---
 insert into AdminTable values('Admin','shubhamthakare329@gmail.com','shubh@1234',7028873490);
 

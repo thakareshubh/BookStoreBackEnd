@@ -101,7 +101,7 @@ namespace RepositoryLayer.Services
 
             var claims = new[]
             {
-
+                new Claim(ClaimTypes.Role,"Admin"),
                 new Claim(ClaimTypes.Email, emailID),
                 new Claim("AdminId", AdminId.ToString())
             };

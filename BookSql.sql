@@ -103,15 +103,5 @@ begin
 select * from Book
 end;
 
-----delete cart--
+--
 
-create proc DeleteCart
-(
-	@CartId int,
-	@UserId int
-)
-as
-begin
-delete Cart where
-		CartId=@CartId and UserId=@UserId;
-end;
